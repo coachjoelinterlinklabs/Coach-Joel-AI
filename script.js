@@ -662,6 +662,8 @@ const validUsers = {
 "@Theo2pii":	"675213",
 "@entia_0703":	"2848048",
 "@SNakamoto": "0833",
+"@mickveen75": "117388893",
+"@luke237": "23783",
   };
 
 // Elements
