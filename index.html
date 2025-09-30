@@ -9,10 +9,10 @@
 <body>
 
   <!-- Header -->
-  <header>
+  <header id="main-header">
     <h1>Welcome to Coach Joel AI</h1>
     <p>Your AI-powered mentor for leadership & community building.</p>
-    <a href="#login-section">🚀 Start Your Journey</a>
+    <a href="#login-section" id="start-link">🚀 Start Your Journey</a>
   </header>
 
   <!-- Login Section -->
@@ -23,7 +23,7 @@
       <!-- Login box (functional) -->
       <div class="form-box">
         <h3>🔑 Login</h3>
-        <input id="telegram" type="text" placeholder="Telegram Username (e.g. @King_Fath)">
+        <input id="telegram" type="text" placeholder="Telegram Username (e.g. @CoachJoel)">
         <input id="interlink" type="text" placeholder="InterLink ID">
         <button id="login-btn" type="button">Login</button>
         <p id="login-error" style="color:red; display:none; margin-top:8px;"></p>
@@ -32,8 +32,8 @@
   </section>
 
   <!-- Chat Section (hidden until login) -->
-  <section id="chat-section" aria-hidden="true">
-    <h2>Welcome, <span id="user-display"></span> 🎉</h2>
+  <section id="chat-section" aria-hidden="true" style="display:none;">
+    <h2>Welcome, <span id="user-display"></span></h2>
     <p>Chat with Coach Joel AI right here 👇</p>
 
     <div class="chat-wrap">
@@ -42,12 +42,18 @@
         src="https://www.chatbase.co/chatbot-iframe/TYIXu-WOSiYQOYn5QvExC"
         title="Coach Joel AI chatbot"
         allow="microphone"
+        style="width:80%; height:600px; border:none; border-radius:12px;"
       ></iframe>
     </div>
   </section>
+  <section>
+    <h2>Support the Mission</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">Help us expand Coach Joel AI and bring leadership training to more communities worldwide.</p>
+    <p style="text-align:center;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpDIkqnIHt0qTnnkLjoJlHcuZue4Hfl_aMjGH61znQ4wnyrw/viewform" target="_blank">🤝 Contribute Here</a></p>
+  </section>
 
   <footer>
-    <p>© 2025 Coach Joel AI</p>
+    <p>© 2025 Coach Joel AI - Leading with Inspiration, Powered by Coach Joel.</p>
   </footer>
 
   <script src="script.js"></script>

@@ -1,6 +1,4 @@
-// ====== VALID USERS (small example) ======
-// Replace or expand this object with your full list.
-// WARNING: anything in this file is visible to anyone who views source.
+
 const validUsers = {
     "@King_Fath": "99575",
     "@ZA0FFICIAL": "530509",
@@ -666,61 +664,53 @@ const validUsers = {
 "@SNakamoto": "0833",
   };
 
-// ====== LOGIN LOGIC ======
-function showError(msg) {
-  const el = document.getElementById('login-error');
-  el.textContent = msg;
-  el.style.display = 'block';
-}
+// Elements
+const loginBtn = document.getElementById("login-btn");
+const telegramInput = document.getElementById("telegram");
+const interlinkInput = document.getElementById("interlink");
+const loginError = document.getElementById("login-error");
+const chatSection = document.getElementById("chat-section");
+const userDisplay = document.getElementById("user-display");
+const loginSection = document.getElementById("login-section");
+const header = document.getElementById("main-header");
 
-function hideError() {
-  const el = document.getElementById('login-error');
-  el.style.display = 'none';
-}
+// Track session in memory only
+let isLoggedIn = false;
 
-function showChat(username) {
-  document.getElementById('user-display').textContent = username;
-  const chat = document.getElementById('chat-section');
-  chat.style.display = 'block';
-  chat.setAttribute('aria-hidden', 'false');
-  // smooth scroll into view
-  chat.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+loginBtn.addEventListener("click", () => {
+  const tg = telegramInput.value.trim();
+  const id = interlinkInput.value.trim();
 
-function login() {
-  const tg = (document.getElementById('telegram') || {}).value?.trim() || '';
-  const id = (document.getElementById('interlink') || {}).value?.trim() || '';
-  if (!tg || !id) {
-    showError('Please enter both Telegram username and InterLink ID.');
-    return;
-  }
   if (validUsers[tg] && validUsers[tg] === id) {
-    hideError();
-    // optionally persist login
-    try { localStorage.setItem('coach_user', tg); } catch(e) {/* ignore */}
-    showChat(tg);
+    // ✅ Success
+    isLoggedIn = true;
+    loginError.style.display = "none";
+
+    // Hide header + login section
+    header.style.display = "none";
+    loginSection.style.display = "none";
+
+    // Show chat
+    chatSection.style.display = "block";
+    chatSection.setAttribute("aria-hidden", "false");
+
+    // Show username
+    userDisplay.textContent = tg;
+
+    // Smooth scroll to chatbot
+    chatSection.scrollIntoView({ behavior: "smooth" });
   } else {
-    showError('Invalid username or InterLink ID. Try again.');
+    // ❌ Fail
+    loginError.style.display = "block";
+    loginError.textContent = "Invalid Telegram or InterLink ID.";
   }
-}
+});
 
-// ====== Enter key support & restore previous session ======
-document.addEventListener('DOMContentLoaded', () => {
-  // Enter key: triggers login when focused on username or id
-  ['telegram','interlink'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') login();
-    });
-  });
-
-  // Button click
-  const btn = document.getElementById('login-btn');
-  if (btn) btn.addEventListener('click', login);
-
-  // Restore session if previously logged in
-  try {
-    const saved = localStorage.getItem('coach_user');
-    if (saved && validUsers[saved]) showChat(saved);
-  } catch(e) {}
+// On refresh → reset to logged out state
+window.addEventListener("load", () => {
+  isLoggedIn = false;
+  header.style.display = "block";
+  loginSection.style.display = "block";
+  chatSection.style.display = "none";
+  chatSection.setAttribute("aria-hidden", "true");
 });
