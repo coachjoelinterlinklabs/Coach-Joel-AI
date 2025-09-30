@@ -664,6 +664,7 @@ const validUsers = {
 "@SNakamoto": "0833",
 "@mickveen75": "117388893",
 "@luke237": "23783",
+"@Pokokungu": "130894577",
   };
 
 // Elements
