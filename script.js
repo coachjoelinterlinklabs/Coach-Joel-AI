@@ -706,7 +706,7 @@ loginBtn.addEventListener("click", () => {
   } else {
     // ❌ Fail
     loginError.style.display = "block";
-    loginError.textContent = "Invalid Telegram or InterLink ID or Not Ambassador Yet, if you want to gain access please contact Coach Joel.";
+    loginError.textContent = "Invalid Telegram or InterLink ID, if you want to gain access please contact Coach Joel.";
   }
 });
 
