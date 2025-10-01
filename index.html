@@ -194,39 +194,114 @@
   </div>
 
   <!-- Top Banner -->
-  <div id="top-banner" style="text-align:center; margin:10px;">
-  
-    <h1><div style="font-weight:bold;"><span class="blinkGlow">List of Contributors</span></div> </h1>
-	 <div class="contributor-list">
+<div id="top-banner" style="text-align:center; margin:10px;">
+  <h1>
+    <div class="blinkGlow" style="font-weight:bold;">List of Contributors</div>
+  </h1>
+
+  <div class="contributor-list">
     <a href="https://x.com/UnitedSmartDeFi?t=WfiRULvSVMg_no895RnVpw&s=09" target="_blank">
-      <img src="USAAA - UNITED SMARTDEFI ASSETS Contribution.png" alt="United SmartDefi Assets">
-    </a> 
+      <img src="USAAA - UNITED SMARTDEFI ASSETS Contribution.png" alt="United SmartDeFi Assets">
+      <div class="contributor-name">United SmartDeFi Assets</div>
+    </a>
    
-      <a href="https://x.com/wealthyvibes555" target="_blank">
-        <img src="Wealthy Crypto.jpg" alt="Wealthy Crypto">
-      </a>
+    <a href="https://x.com/wealthyvibes555" target="_blank">
+      <img src="Wealthy Crypto.jpg" alt="Wealthy Crypto">
+      <div class="contributor-name">Wealthy Crypto</div>
+    </a>
 	  
-      <a href="https://x.com/mrh_interlink/status/1972759438370201973" target="_blank">
-        <img src="MrH.jpg" alt="MrH">
-      </a>
+    <a href="https://x.com/mrh_interlink/status/1972759438370201973" target="_blank">
+      <img src="MrH.jpg" alt="MrH">
+      <div class="contributor-name">MrH</div>
+    </a>
 	  
-      <a href="https://x.com/MichaelVeenvli1" target="_blank">
-        <img src="MichaelVeenvli1.jpg" alt="Michael Veenvli">
-      </a>
+    <a href="https://x.com/MichaelVeenvli1" target="_blank">
+      <img src="MichaelVeenvli1.jpg" alt="Michael Veenvli">
+      <div class="contributor-name">Michael Veenvli</div>
+    </a>
 	  
-      <a href="https://x.com/TheManofLord" target="_blank">
-        <img src="Coach Luke.jpg" alt="Coach Luke">
-      </a>
+    <a href="https://x.com/TheManofLord" target="_blank">
+      <img src="Coach Luke.jpg" alt="Coach Luke">
+      <div class="contributor-name">Coach Luke</div>
+    </a>
 	  
-      <a href="https://x.com/reina_itl" target="_blank">
-        <img src="reina.jpg" alt="Reina">
-      </a>
+    <a href="https://x.com/reina_itl" target="_blank">
+      <img src="reina.jpg" alt="Reina">
+      <div class="contributor-name">Reina</div>
+    </a>
 	  
-	  <a href="https://x.com/hoangdaikha1?s=21" target="_blank">
-        <img src="Katrader.png" alt="Katrader">
-      </a>
-    </div>
+    <a href="https://x.com/hoangdaikha1?s=21" target="_blank">
+      <img src="Katrader.png" alt="Katrader">
+      <div class="contributor-name">Katrader</div>
+    </a>
   </div>
+</div>
+
+<style>
+/* Rainbow blinking effect for title */
+.rainbow-blink {
+  animation: rainbowGlow 3s linear infinite;
+  font-size: 2em;
+}
+
+@keyframes rainbowGlow {
+  0% { color: red; text-shadow: 0 0 10px red; }
+  16% { color: orange; text-shadow: 0 0 10px orange; }
+  32% { color: yellow; text-shadow: 0 0 10px yellow; }
+  48% { color: green; text-shadow: 0 0 10px green; }
+  64% { color: blue; text-shadow: 0 0 10px blue; }
+  80% { color: indigo; text-shadow: 0 0 10px indigo; }
+  100% { color: violet; text-shadow: 0 0 10px violet; }
+}
+
+/* Layout for contributor list */
+.contributor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contributor-list a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+
+/* Christmas light fade effect on contributor images */
+.contributor-list img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  animation: christmasFade 4s infinite alternate;
+}
+
+@keyframes christmasFade {
+  0%   { filter: brightness(0.4) hue-rotate(0deg); }
+  25%  { filter: brightness(1.2) hue-rotate(60deg); }
+  50%  { filter: brightness(0.6) hue-rotate(120deg); }
+  75%  { filter: brightness(1.5) hue-rotate(180deg); }
+  100% { filter: brightness(0.7) hue-rotate(300deg); }
+}
+
+/* Staggered delays for each contributor image */
+.contributor-list a:nth-child(1) img { animation-delay: 0s; }
+.contributor-list a:nth-child(2) img { animation-delay: 0.5s; }
+.contributor-list a:nth-child(3) img { animation-delay: 1s; }
+.contributor-list a:nth-child(4) img { animation-delay: 1.5s; }
+.contributor-list a:nth-child(5) img { animation-delay: 2s; }
+.contributor-list a:nth-child(6) img { animation-delay: 2.5s; }
+.contributor-list a:nth-child(7) img { animation-delay: 3s; }
+
+/* Contributor names styling */
+.contributor-name {
+  font-size: 14px;
+  margin-top: 5px;
+  animation: rainbowGlow 5s linear infinite;
+}
+</style>
+
 
   </div>
 
@@ -262,7 +337,7 @@
 
   <footer>
     <p>© 2025 Coach Joel AI 🤖 - Leading with pure dedication, <span class="blinkGlow">Powered by</span> Coach Joel Team.</p>
-    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpDIkqnIHt0qTnnkLjoJlHcuZue4Hfl_aMjGH61znQ4wnyrw/viewform" target="_blank">🤝 Please Fill Up The Contribution Form Here! 🤝</a></p>
+    <p>If you want to be part of the team <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpDIkqnIHt0qTnnkLjoJlHcuZue4Hfl_aMjGH61znQ4wnyrw/viewform" target="_blank">🤝 Here's the Contribution Form🤝</a></p>
   </footer>
 
   <script>
