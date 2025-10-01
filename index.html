@@ -5,56 +5,307 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Coach Joel AI</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Humanoid AI font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #004080; 
+      --accent-dark: #00264d;
+      --cta: #00f0ff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: #001f33;
+      overflow-x: hidden;
+    }
+
+    /* Canvas AI background */
+    #bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: #001f33;
+    }
+
+    /* Sticky glowing top bar */
+    #main-header {
+      width: 100%;
+      background: var(--accent);
+      padding: 10px;
+      color: white;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      font-family: 'Orbitron', sans-serif;
+    }
+    #main-header h1 {
+      margin: 0;
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    /* Blinking + jump animations */
+    .blinkGlow {
+      animation: blinkGlow 1.5s infinite;
+    }
+    @keyframes blinkGlow {
+      0%, 50%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--cta), 0 0 15px var(--cta);
+      }
+      25%, 75% {
+        opacity: 0.7;
+        text-shadow: 0 0 2px var(--cta), 0 0 5px var(--cta);
+      }
+    }
+    .rocket-icon {
+      display: inline-block;
+      margin-right: 8px;
+      animation: jump 2s ease-in-out infinite;
+    }
+    @keyframes jump {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
+    }
+
+    header {
+      padding: 40px 20px;
+      background: transparent;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+    }
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    header p { font-size: 18px; }
+
+    iframe { max-width: 100%; border-radius: 10px; }
+
+    /* Login form */
+    .form-container { display: flex; justify-content: center; }
+    .form-box {
+      min-width: 300px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 22px;
+      border-radius: 12px;
+      text-align: center;
+      color: black;
+    }
+    .form-box input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .form-box button {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .form-box button:hover { background: var(--accent-dark); }
+
+    /* Robot icon jump */
+    .robot-icon {
+      display: inline-block;
+      animation: jump 2s ease-in-out infinite;
+      font-size: 26px;
+      margin-right: 8px;
+    }
+
+    /* Welcome message fixed */
+    #welcome-message {
+      display: none;
+      width: 100%;
+      background: var(--accent);
+      padding: 12px;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      position: fixed;   /* Fixed now */
+      top: 0;
+      left: 0;
+      z-index: 2000;
+    }
+
+    .after-login #welcome-message { display: block; }
+    .after-login #home,
+    .after-login #login-section,
+    .after-login #main-header,
+    .after-login #top-banner { display: none; }
+
+    /* Chat section below sticky welcome */
+    #chat-section { display: none; }
+    .chat-wrap { display: flex; justify-content: center; }
+    #chat-iframe { 
+      width: 100%; 
+      height: calc(100vh - 60px); /* full screen minus welcome bar */
+      border: 0; 
+      margin-top: 60px; /* offset below welcome */
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    footer a { color: #00f0ff; }
+  </style>
 </head>
 <body>
+  <canvas id="bgCanvas"></canvas>
 
-  <!-- Header -->
-  <header id="main-header">
-    <h1>Welcome to Coach Joel AI</h1>
-    <p>Your InterLink AI-powered Assistant for leadership & community building.</p>
+  <!-- Sticky Header -->
+  <div id="main-header">
+    <a href="#login-section" style="display:flex; justify-content:center; align-items:center; text-decoration:none; color:white;">
+      <h1><span class="rocket-icon">🚀</span><span class="blinkGlow">Start Your Journey</span></h1>
+    </a>
+  </div>
 
-    <!-- YouTube Video Embed -->
-   <div> <iframe width="315" height="315" src="https://www.youtube-nocookie.com/embed/1Zah5S6QBMs?si=_CIDIaHWBZbmNYFK&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</iframe>
-</div>
-  <div>  <p> <a href="#login-section" id="start-link">🚀 Start Your Journey</a></p></div>
-  </header>
+  <!-- Welcome after login -->
+  <div id="welcome-message">
+    <span class="robot-icon">🤖</span>Welcome, <span id="user-display"></span>
+  </div>
+
+  <!-- Top Banner -->
+  <div id="top-banner" style="text-align:center; margin:10px;">
+    <div style="font-weight:bold;">List of Contributors</div>
+    <a href="https://x.com/UnitedSmartDeFi?t=WfiRULvSVMg_no895RnVpw&s=09" target="_blank">
+      <img src="Sponsored by United SmartDefi Assets ($USAAA).png" alt="Coach Joel AI Logo" style="max-height:60px;">
+    </a> 
+    <div class="contributor-list">
+      <a href="https://x.com/wealthyvibes555" target="_blank">
+        <img src="Wealthy Crypto.jpg" alt="Wealthy Crypto">
+      </a>
+      <a href="https://x.com/mrh_interlink/status/1972759438370201973" target="_blank">
+        <img src="MrH.jpg" alt="MrH">
+      </a>
+      <a href="https://x.com/MichaelVeenvli1" target="_blank">
+        <img src="MichaelVeenvli1.jpg" alt="Michael Veenvli">
+      </a>
+      <a href="https://x.com/TheManofLord" target="_blank">
+        <img src="Coach Luke.jpg" alt="Coach Luke">
+      </a>
+      <a href="https://x.com/reina_itl" target="_blank">
+        <img src="reina.jpg" alt="Reina">
+      </a>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- Home Section -->
+  <section id="home">
+    <header>
+      <h1>Welcome to Coach Joel AI</h1>
+      <p>Your InterLink AI-powered Assistant for leadership & community building.</p>
+    </header>
+    <div>
+      <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1Zah5S6QBMs?rel=0" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
 
   <!-- Login Section -->
   <section id="login-section">
-    <h2>Hi Linker Login to Get Started</h2>
+    <h2><span class="robot-icon">🤖</span>Hi Linker Login to Get Started</h2>
     <div class="form-container">
-
-      <!-- Login box (functional) -->
       <div class="form-box">
-        <h3>🔑 Login</h3>
         <input id="telegram" type="text" placeholder="Telegram Username (e.g. @CoachJoel)">
-        <input id="interlink" type="text" placeholder="InterLink ID (e.g. 950150519">
-        <div><button id="login-btn" type="button">Login</button></div>
-        <p id="login-error" style="color:red; display:none; margin-top:8px;"></p>
+        <input id="interlink" type="text" placeholder="InterLink ID (e.g. 950150519)">
+        <div><button id="login-btn" type="button">🔑 Login</button></div>
       </div>
     </div>
   </section>
 
-  <!-- Chat Section (hidden until login) -->
-  <section id="chat-section" aria-hidden="true" style="display:none;">
-    <h2>Welcome, <span id="user-display"></span></h2>
-
+  <!-- Chat Section -->
+  <section id="chat-section">
     <div class="chat-wrap">
-      <iframe
-        src="https://www.chatbase.co/chatbot-iframe/fzoU44YxjsBSZNU5-rfF5"
-        width="100%"
-        style="height: 90%; min-height: 600px"
-        frameborder="0">
-      </iframe>
+      <iframe id="chat-iframe" src="https://www.chatbase.co/chatbot-iframe/fzoU44YxjsBSZNU5-rfF5"></iframe>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 Coach Joel AI - Leading with pure dedication, Powered by Coach Joel Team. If you want to Contribute Coach Joel AI</p>
-    <p style="text-align:center;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpDIkqnIHt0qTnnkLjoJlHcuZue4Hfl_aMjGH61znQ4wnyrw/viewform" target="_blank">🤝Please Fill Up The Contribution Form Here!🤝</a></p>
+    <p>© 2025 Coach Joel AI 🤖 - Leading with pure dedication, Powered by Coach Joel Team.</p>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpDIkqnIHt0qTnnkLjoJlHcuZue4Hfl_aMjGH61znQ4wnyrw/viewform" target="_blank">🤝 Please Fill Up The Contribution Form Here! 🤝</a></p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Login logic
+    document.getElementById("login-btn").addEventListener("click", function(){
+      const telegramUsername = document.getElementById("telegram").value || "User";
+      document.getElementById("user-display").textContent = telegramUsername;
+      document.body.classList.add("after-login");
+      document.getElementById("chat-section").style.display = "block";
+      window.scrollTo(0, 0);
+    });
+
+    // AI glowing particle background
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createParticles(num) {
+      particles = [];
+      for (let i = 0; i < num; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2 + 1,
+          dx: (Math.random() - 0.5) * 1.5,
+          dy: (Math.random() - 0.5) * 1.5
+        });
+      }
+    }
+    createParticles(120);
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,240,255,0.8)';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+  </script>
 </body>
 </html>
