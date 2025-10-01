@@ -236,7 +236,7 @@ const validUsers = {
 "@Bapuji79":	"7396911230",
 "@Skkyyyi":	"70308305",
 "@thotayya143":	"8500792128",
-"@InterlinkPoornima":	"227475",
+"@Poornima_InterlinkAmbassador":	"227475",
 "@Naveenmajjari":	"342240106483",
 "@kurakulaSridhar":	"04341058056",
 "@davidapollo2020":	"2066380",
