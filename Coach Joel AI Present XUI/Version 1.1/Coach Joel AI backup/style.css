@@ -1,0 +1,59 @@
+/* ================================
+   Top Banner (center align)
+   ================================ */
+#top-banner {
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#top-banner img {
+  max-width: 120px; /* unified size for all images */
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* keep circular */
+  border: 2px solid var(--cta);
+  object-fit: cover;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#top-banner img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--cta), 0 0 20px var(--cta);
+}
+
+.contributor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* spacing between logos */
+  margin-top: 15px;
+}
+
+.contributor-list img {
+  width: 120px;   /* uniform width */
+  height: 120px;  /* uniform height */
+  object-fit: cover;  /* crop while keeping proportion */
+  border-radius: 10px; /* optional rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contributor-list img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,240,255,0.7);
+}
+
+}
+
+/* Responsive scaling */
+@media (max-width: 1024px) {
+  #top-banner img { max-width: 100px; }
+}
+@media (max-width: 768px) {
+  #top-banner img { max-width: 80px; }
+}
+@media (max-width: 480px) {
+  #top-banner img { max-width: 65px; }
+}
