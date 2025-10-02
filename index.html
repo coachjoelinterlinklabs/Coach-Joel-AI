@@ -327,7 +327,9 @@
       <div class="form-box">
         <input id="telegram" type="text" placeholder="Telegram Username (e.g. @CoachJoel)">
         <input id="interlink" type="text" placeholder="InterLink ID (e.g. 950150519)">
-        <div><button id="login-btn" type="button"><span class="blinkGlow">🔑 Login</span></button></div>
+       <div><button id="login-btn" type="button"><span class="blinkGlow">🔑 Login</span></button></div>   <p id="login-error" style="color:red; display:none; margin-top:8px;"></p>
+      </div>
+      
       </div>
     </div>
   </section>
@@ -344,58 +346,7 @@
     <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpDIkqnIHt0qTnnkLjoJlHcuZue4Hfl_aMjGH61znQ4wnyrw/viewform" target="_blank">🤝 Contribution Form🤝</a></p>
   </footer>
 
-  <script>
-    // Login logic
-    document.getElementById("login-btn").addEventListener("click", function(){
-      const telegramUsername = document.getElementById("telegram").value || "User";
-      document.getElementById("user-display").textContent = telegramUsername;
-      document.body.classList.add("after-login");
-      document.getElementById("chat-section").style.display = "block";
-      window.scrollTo(0, 0);
-    });
-
-    // AI glowing particle background
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function createParticles(num) {
-      particles = [];
-      for (let i = 0; i < num; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 1,
-          dx: (Math.random() - 0.5) * 1.5,
-          dy: (Math.random() - 0.5) * 1.5
-        });
-      }
-    }
-    createParticles(120);
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,240,255,0.8)';
-        ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-      });
-      requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-  </script>
+  <script src="script.js"></script>
+  
 </body>
 </html>
