@@ -45,8 +45,6 @@
   box-shadow: 0 0 15px rgba(0,240,255,0.7);
 }
 
-}
-
 /* Responsive scaling */
 @media (max-width: 1024px) {
   #top-banner img { max-width: 100px; }
@@ -56,4 +54,62 @@
 }
 @media (max-width: 480px) {
   #top-banner img { max-width: 65px; }
+}
+
+/* ------------------
+   Welcome / Chat highlight (added)
+   ------------------ */
+
+/* keep welcome hidden by default — will be shown on login */
+#welcome-message {
+  display: none; /* shown on login */
+  width: 100%;
+  background: var(--accent);
+  padding: 12px;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+/* when body gets `after-login` class, show the welcome bar */
+.after-login #welcome-message {
+  display: block !important;
+}
+
+/* highlight Chatbase iframe when logged in */
+.after-login #chat-iframe {
+  outline: 4px solid var(--cta);
+  box-shadow: 0 0 35px var(--cta);
+  border-radius: 12px;
+  transform: scale(1.01);
+  transition: all 0.35s ease-in-out;
+}
+
+/* ensure chat iframe fits device height minus welcome bar */
+#chat-iframe {
+  width: 100%;
+  height: calc(100vh - 60px); /* fits laptop & cellphone */
+  border: none;
+  margin-top: 60px; /* leave space for welcome bar */
+}
+
+/* optional: slightly dim rest of page when in after-login (spotlight effect) */
+.after-login #home,
+.after-login #top-banner,
+.after-login footer,
+.after-login #login-section,
+.after-login #main-header {
+  filter: blur(2px) brightness(0.6);
+  transition: filter 0.3s ease;
+  pointer-events: none; /* avoid interacting with background */
+}
+
+/* allow chat area to remain interactive */
+.after-login #chat-section {
+  filter: none;
+  pointer-events: auto;
 }

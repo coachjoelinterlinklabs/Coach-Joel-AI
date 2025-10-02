@@ -678,43 +678,84 @@ const userDisplay = document.getElementById("user-display");
 const loginSection = document.getElementById("login-section");
 const header = document.getElementById("main-header");
 
-// Track session in memory only
-let isLoggedIn = false;
+// Wait for DOM
+document.addEventListener("DOMContentLoaded", () => {
+  // Elements
+  const loginBtn = document.getElementById("login-btn");
+  const telegramInput = document.getElementById("telegram");
+  const interlinkInput = document.getElementById("interlink");
+  const loginError = document.getElementById("login-error");
+  const chatSection = document.getElementById("chat-section");
+  const userDisplay = document.getElementById("user-display");
+  const loginSection = document.getElementById("login-section");
+  const header = document.getElementById("main-header");
+  const welcomeBar = document.getElementById("welcome-message");
+  const chatIframe = document.getElementById("chat-iframe");
 
-loginBtn.addEventListener("click", () => {
-  const tg = telegramInput.value.trim();
-  const id = interlinkInput.value.trim();
+  // Track session in memory only
+  let isLoggedIn = false;
 
-  if (validUsers[tg] && validUsers[tg] === id) {
-    // ✅ Success
-    isLoggedIn = true;
-    loginError.style.display = "none";
-
-    // Hide header + login section
-    header.style.display = "none";
-    loginSection.style.display = "none";
-
-    // Show chat
-    chatSection.style.display = "block";
-    chatSection.setAttribute("aria-hidden", "false");
-
-    // Show username
-    userDisplay.textContent = tg;
-
-    // Smooth scroll to chatbot
-    chatSection.scrollIntoView({ behavior: "smooth" });
-  } else {
-    // ❌ Fail
-    loginError.style.display = "block";
-    loginError.textContent = "Invalid Telegram or InterLink ID, if you want to gain access please contact Coach Joel.";
+  // Reset UI on load
+  function resetToLoggedOut() {
+    isLoggedIn = false;
+    header.style.display = "block";
+    loginSection.style.display = "block";
+    chatSection.style.display = "none";
+    chatSection.setAttribute("aria-hidden", "true");
+    if (welcomeBar) welcomeBar.style.display = "none";
+    document.body.classList.remove("after-login");
+    userDisplay.textContent = "";
   }
-});
 
-// On refresh → reset to logged out state
-window.addEventListener("load", () => {
-  isLoggedIn = false;
-  header.style.display = "block";
-  loginSection.style.display = "block";
-  chatSection.style.display = "none";
-  chatSection.setAttribute("aria-hidden", "true");
+  resetToLoggedOut();
+
+  loginBtn.addEventListener("click", () => {
+    const tg = telegramInput.value.trim();
+    const id = interlinkInput.value.trim();
+
+    if (validUsers[tg] && validUsers[tg] === id) {
+      // ✅ Success
+      isLoggedIn = true;
+      loginError.style.display = "none";
+
+      // Hide header + login section
+      header.style.display = "none";
+      loginSection.style.display = "none";
+
+      // Show chat + welcome
+      chatSection.style.display = "block";
+      chatSection.setAttribute("aria-hidden", "false");
+
+      if (welcomeBar) welcomeBar.style.display = "block";
+
+      // Show username in welcome bar
+      userDisplay.textContent = tg;
+
+      // Add body class for highlight + dim background
+      document.body.classList.add("after-login");
+
+      // Focus / scroll into the chat iframe
+      if (chatIframe) {
+        // Slight delay to allow layout to settle
+        setTimeout(() => {
+          try {
+            chatIframe.scrollIntoView({ behavior: "smooth", block: "center" });
+            // also focus the iframe if allowed
+            chatIframe.focus();
+          } catch (e) {
+            // ignore cross-origin focus issues
+          }
+        }, 150);
+      }
+    } else {
+      // ❌ Fail
+      loginError.style.display = "block";
+      loginError.textContent = "Invalid Telegram or InterLink ID, if you want to gain access please contact Coach Joel.";
+    }
+  });
+
+  // On page refresh, ensure logged-out state
+  window.addEventListener("load", () => {
+    resetToLoggedOut();
+  });
 });
