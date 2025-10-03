@@ -94,7 +94,7 @@
   width: 100%;
   height: calc(100vh - 60px); /* fits laptop & cellphone */
   border: none;
-  margin-top: 60px; /* leave space for welcome bar */
+  margin-top: 50px; /* leave space for welcome bar */
 }
 
 /* optional: slightly dim rest of page when in after-login (spotlight effect) */
@@ -103,7 +103,7 @@
 .after-login footer,
 .after-login #login-section,
 .after-login #main-header {
-  filter: blur(2px) brightness(0.6);
+  filter: blur(2px) brightness(0.0);
   transition: filter 0.3s ease;
   pointer-events: none; /* avoid interacting with background */
 }
@@ -113,3 +113,4 @@
   filter: none;
   pointer-events: auto;
 }
+
