@@ -94,7 +94,7 @@
   width: 100%;
   height: calc(100vh - 60px); /* fits laptop & cellphone */
   border: none;
-  margin-top: 50px; /* leave space for welcome bar */
+  margin-top: 10px; /* leave space for welcome bar */
 }
 
 /* optional: slightly dim rest of page when in after-login (spotlight effect) */
@@ -113,4 +113,5 @@
   filter: none;
   pointer-events: auto;
 }
+
 
