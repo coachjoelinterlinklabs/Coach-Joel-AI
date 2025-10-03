@@ -10,7 +10,7 @@
 }
 
 #top-banner img {
-  max-width: 120px; /* unified size for all images */
+  max-width: 100px; /* unified size for all images */
   width: 100%;
   height: auto;
   border-radius: 50%; /* keep circular */
@@ -113,6 +113,7 @@
   filter: none;
   pointer-events: auto;
 }
+
 
 
 
