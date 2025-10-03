@@ -8254,6 +8254,7 @@ const validUsers = {
 "@luke237": "23783",
 "@Pokokungu": "130894577",
 "@Dr_Picoin": "650594291",
+"@zerotwoone021": "000021",
   };
 
 // Elements
@@ -8722,6 +8723,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
  // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe // Focus / scroll into the chat iframe
+
 
 
 
